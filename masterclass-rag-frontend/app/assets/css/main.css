@@ -74,11 +74,11 @@ textarea, input { caret-color: var(--color-soft-indigo); }
 }
 
 /* Glow indigo lembut di belakang halaman chat baru. Lapisan glow bergerak sangat pelan (transform saja, ringan di GPU). */
-.backdrop-glow { background: var(--color-carbon); }
+.backdrop-glow { background: var(--color-carbon); overflow: hidden; } /* potong glow di batas area utama, jangan bocor ke sidebar */
 .backdrop-glow::after {
   content: "";
   position: absolute;
-  inset: -25% -15%;
+  inset: -35% -30%;
   z-index: -2; /* di bawah grid blueprint (z -1) */
   background:
     radial-gradient(ellipse 45% 40% at 50% 68%, color-mix(in srgb, var(--color-soft-indigo) 26%, transparent) 0%, color-mix(in srgb, var(--color-soft-indigo) 10%, transparent) 50%, transparent 78%),
