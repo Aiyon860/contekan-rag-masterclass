@@ -6,18 +6,19 @@ const route = useRoute()
 
 const editing = ref<string | null>(null)
 const draft = ref('')
-const confirmId = ref<string | null>(null)
+const pendingDelete = ref<{ id: string; title: string } | null>(null)
 
-function startRename(id: string, title: string) { editing.value = id; draft.value = title; confirmId.value = null }
+function startRename(id: string, title: string) { editing.value = id; draft.value = title }
 function commitRename() {
   if (editing.value) rename(editing.value, draft.value)
   editing.value = null
 }
-async function del(id: string) {
-  if (confirmId.value !== id) { confirmId.value = id; return }
-  confirmId.value = null
-  const wasActive = route.params.id === id
-  remove(id)
+function confirmDelete() {
+  const target = pendingDelete.value
+  if (!target) return
+  pendingDelete.value = null
+  const wasActive = route.params.id === target.id
+  remove(target.id)
   if (wasActive) navigateTo('/')
 }
 const readyCount = computed(() => docs.value.filter(d => d.status === 'ready' && d.enabled).length)
@@ -55,18 +56,22 @@ const readyCount = computed(() => docs.value.filter(d => d.status === 'ready' &&
               <span class="truncate">{{ c.title }}</span>
             </NuxtLink>
             <div class="absolute right-1 top-1/2 flex -translate-y-1/2 items-center opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100">
-              <template v-if="confirmId === c.id">
-                <button class="rounded-md bg-bone px-2 py-1 text-xs font-medium text-carbon" @click="del(c.id)" @blur="confirmId = null">Yakin hapus?</button>
-              </template>
-              <template v-else>
-                <button class="btn-icon !size-7" aria-label="Ganti nama chat" @click="startRename(c.id, c.title)"><Icon name="pencil" :size="14" /></button>
-                <button class="btn-icon !size-7" aria-label="Hapus chat" @click="del(c.id)"><Icon name="trash" :size="14" /></button>
-              </template>
+              <button class="btn-icon !size-7" aria-label="Ganti nama chat" @click="startRename(c.id, c.title)"><Icon name="pencil" :size="14" /></button>
+              <button class="btn-icon !size-7" aria-label="Hapus chat" @click="pendingDelete = { id: c.id, title: c.title }"><Icon name="trash" :size="14" /></button>
             </div>
           </template>
         </li>
       </ul>
     </nav>
+
+    <ConfirmDialog
+      :open="!!pendingDelete"
+      title="Hapus chat ini?"
+      :message="pendingDelete ? `“${pendingDelete.title}” beserta seluruh pesannya akan dihapus permanen. Dokumen di Memory tidak ikut terhapus.` : ''"
+      confirm-label="Hapus chat"
+      @confirm="confirmDelete"
+      @cancel="pendingDelete = null"
+    />
 
     <div class="space-y-1 border-t border-iron p-2">
       <NuxtLink to="/memory" class="pill">
