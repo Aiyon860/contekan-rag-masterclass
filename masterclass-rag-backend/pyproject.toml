@@ -1,0 +1,19 @@
+[project]
+name = "masterclass-rag-backend"
+version = "0.1.0"
+description = "Backend demo Masterclass RAG (FastAPI + SQLModel + ChromaDB + Ollama)"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]",
+    "sqlmodel",
+    "chromadb",
+    "ollama",
+    "pypdf",
+    "python-docx",
+    "openpyxl",
+    "pydantic-settings",
+    "xlrd>=2.0.2",
+]
+
+[tool.fastapi]
+entrypoint = "app.main:app"

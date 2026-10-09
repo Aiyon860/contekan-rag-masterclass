@@ -1,0 +1,32 @@
+SECTION: BASIC INFORMATION
+Full Name: Arka Wijaya Kusuma. Preferred Name: Arka. Location: Yogyakarta, Indonesia. Email: arka.wijaya@example.com. Portfolio: arkawijaya.dev. GitHub: github.com/arkawijaya.
+
+SECTION: ABOUT ME
+Arka is a final-year Informatics Engineering student at Universitas Gadjah Mada, focusing on data engineering and machine learning infrastructure. He is passionate about building efficient data pipelines, exploring natural language processing, and mentoring junior students in competitive programming.
+
+SECTION: GOALS - SHORT TERM
+Arka's short-term goals are to complete his Data Engineer internship at PT Cendana Analytics from September to January 2027, obtain a certification in Apache Airflow and dbt, and finish his undergraduate thesis on real-time anomaly detection for sensor data.
+
+SECTION: GOALS - LONG TERM
+Arka's long-term goal is to become a machine learning infrastructure engineer, eventually work at a data-driven technology company in Southeast Asia, and start a small open-source project for lightweight data pipeline orchestration.
+
+SECTION: SKILLS - TECHNICAL
+Arka's technical skills include data engineering with Python and Apache Airflow, machine learning with scikit-learn and PyTorch, backend development with FastAPI and Django, database management with PostgreSQL and MongoDB, and containerization using Docker and Kubernetes basics.
+
+SECTION: SKILLS - SOFT SKILLS
+Arka's soft skills include analytical thinking, mentoring and teaching, structured technical writing, and adaptability when working across data science and backend engineering teams.
+
+SECTION: SKILLS - LANGUAGES
+Arka is a native speaker of Bahasa Indonesia, communicates in English at a professional working proficiency level, and has basic conversational skills in Japanese from self-study.
+
+SECTION: HOBBIES AND INTERESTS
+Arka enjoys competitive programming on platforms like Codeforces, photography focused on urban landscapes, playing badminton on weekends, and writing technical articles about data engineering on his personal blog.
+
+SECTION: EXPERIENCE AND ACTIVITIES
+Arka is a core member of the UGM Data Science Student Club, where he leads weekly study sessions on machine learning fundamentals. He previously interned as a Data Analyst at PT Nusantara Insight, and built an open-source project called FlowLite, a lightweight workflow scheduler for small-scale data pipelines.
+
+SECTION: ACHIEVEMENTS
+Arka won second place in a national data science competition held by Kompetisi Sains Data Indonesia in 2025, and maintained a GPA in the top ten percent of his cohort throughout his studies.
+
+SECTION: METADATA
+Last Updated: 2026-08-11.

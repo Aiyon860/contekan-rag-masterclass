@@ -1,0 +1,32 @@
+SECTION: BASIC INFORMATION
+Full Name: Sabrina Putri Anggraeni. Preferred Name: Sabrina. Location: Bandung, Indonesia. Email: sabrina.anggraeni@example.com. Portfolio: sabrinaputri.dev. GitHub: github.com/sabrinaputri.
+
+SECTION: ABOUT ME
+Sabrina is a final-year Information Systems student at Institut Teknologi Bandung, focusing on human-computer interaction and product design engineering. She is passionate about designing intuitive user interfaces, conducting usability research, and bridging the gap between design and frontend engineering.
+
+SECTION: GOALS - SHORT TERM
+Sabrina's short-term goals are to complete her UI/UX Engineer internship at PT Meru Digital Kreasi from September to February 2027, strengthen her skills in design systems and accessibility standards, and finish her final project on adaptive interface design for low-literacy users.
+
+SECTION: GOALS - LONG TERM
+Sabrina's long-term goal is to become a product design engineer who can operate fluently across both design and frontend implementation, eventually lead a design system team at a growing technology company, and mentor aspiring designers through workshops.
+
+SECTION: SKILLS - TECHNICAL
+Sabrina's technical skills include UI design with Figma, frontend development with React and Tailwind CSS, prototyping and usability testing, basic accessibility auditing, and design system documentation using Storybook.
+
+SECTION: SKILLS - SOFT SKILLS
+Sabrina's soft skills include empathetic communication during user research, cross-functional collaboration with engineers and product managers, structured presentation skills, and receptiveness to iterative feedback.
+
+SECTION: SKILLS - LANGUAGES
+Sabrina is a native speaker of Bahasa Indonesia, communicates in English at a professional working proficiency level, and has beginner-level skills in Korean from personal interest.
+
+SECTION: HOBBIES AND INTERESTS
+Sabrina enjoys sketching and digital illustration, exploring specialty coffee shops around Bandung, practicing yoga, and curating a small design inspiration blog where she shares interface teardown critiques.
+
+SECTION: EXPERIENCE AND ACTIVITIES
+Sabrina is a design lead at the ITB Human-Computer Interaction Student Community, where she organizes usability testing workshops for fellow students. She previously interned as a Product Design intern at PT Layar Bening Studio, and contributed to an open-source design system called Komponen, aimed at Indonesian startups.
+
+SECTION: ACHIEVEMENTS
+Sabrina was selected as a finalist in the National UI/UX Design Challenge held by Indonesia Design Week in 2025, and received a merit scholarship for academic excellence throughout her studies.
+
+SECTION: METADATA
+Last Updated: 2026-08-12.

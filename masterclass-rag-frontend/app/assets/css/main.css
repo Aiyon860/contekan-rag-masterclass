@@ -1,0 +1,182 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono/400.css";
+
+@theme {
+  --color-soft-indigo: #6798ff;
+  --color-pure-black: #000000;
+  --color-carbon: #0a0a0a;
+  --color-graphite: #141414;
+  --color-iron: #1e1e1e;
+  --color-slate-edge: #313131;
+  --color-smoke: #454545;
+  --color-mist: #7c7c7c;
+  --color-ash: #a7a7a7;
+  --color-bone: #ffffff;
+
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --grid: 48px;
+}
+
+html, body, #__nuxt { height: 100%; }
+
+body {
+  background: var(--color-carbon);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.25px;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "liga";
+  overflow: hidden;
+}
+
+/* Permukaan yang biasanya dilupakan: seleksi, caret, fokus, scrollbar */
+::selection { background: color-mix(in srgb, var(--color-soft-indigo) 45%, transparent); color: var(--color-bone); }
+textarea, input { caret-color: var(--color-soft-indigo); }
+:focus-visible { outline: 2px solid var(--color-soft-indigo); outline-offset: 2px; border-radius: 4px; }
+* { scrollbar-width: thin; scrollbar-color: var(--color-slate-edge) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--color-slate-edge); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-smoke); }
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Kanvas blueprint: grid tipis, memudar ke bawah */
+.blueprint {
+  position: relative;
+  isolation: isolate;
+}
+.blueprint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--color-iron) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-iron) 1px, transparent 1px);
+  background-size: var(--grid) var(--grid);
+  background-position: center top;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Glow indigo lembut di belakang halaman chat baru. Lapisan glow bergerak sangat pelan (transform saja, ringan di GPU). */
+.backdrop-glow { background: var(--color-carbon); }
+.backdrop-glow::after {
+  content: "";
+  position: absolute;
+  inset: -25% -15%;
+  z-index: -2; /* di bawah grid blueprint (z -1) */
+  background:
+    radial-gradient(ellipse 45% 40% at 50% 68%, color-mix(in srgb, var(--color-soft-indigo) 26%, transparent) 0%, color-mix(in srgb, var(--color-soft-indigo) 10%, transparent) 50%, transparent 78%),
+    radial-gradient(ellipse 60% 45% at 30% 85%, color-mix(in srgb, var(--color-soft-indigo) 13%, transparent), transparent 75%),
+    radial-gradient(ellipse 55% 45% at 72% 80%, color-mix(in srgb, var(--color-soft-indigo) 11%, transparent), transparent 75%);
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: glow-in 1.4s var(--ease-out-expo) both, glow-drift 5s ease-in-out 1.4s infinite alternate;
+}
+@keyframes glow-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes glow-drift {
+  0%   { transform: translate3d(-12%, 8%, 0) scale(.92) rotate(-5deg); opacity: .55; }
+  50%  { transform: translate3d(8%, -10%, 0) scale(1.22) rotate(3deg); opacity: 1; }
+  100% { transform: translate3d(14%, 4%, 0) scale(1.08) rotate(6deg); opacity: .7; }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 500;
+    line-height: 1.5; letter-spacing: -0.2px; white-space: nowrap; cursor: pointer;
+    transition: background-color .18s var(--ease-out-expo), border-color .18s var(--ease-out-expo), color .18s, opacity .18s;
+    min-height: 36px;
+  }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .btn-primary { background: var(--color-bone); color: var(--color-carbon); }
+  .btn-primary:hover:not(:disabled) { background: #e6e6e6; }
+  .btn-ghost { border: 1px solid var(--color-smoke); color: var(--color-bone); background: transparent; }
+  .btn-ghost:hover:not(:disabled) { background: var(--color-iron); border-color: var(--color-mist); }
+  .btn-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px; color: var(--color-ash); cursor: pointer;
+    transition: background-color .18s, color .18s;
+  }
+  .btn-icon:hover:not(:disabled) { background: var(--color-iron); color: var(--color-bone); }
+  .btn-icon:disabled { opacity: .4; cursor: not-allowed; }
+
+  .input {
+    width: 100%; background: var(--color-graphite); border: 1px solid var(--color-slate-edge);
+    border-radius: 8px; padding: 8px 12px; font-size: 14px; color: var(--color-bone);
+    transition: border-color .18s;
+  }
+  .input::placeholder { color: var(--color-mist); }
+  .input:hover { border-color: var(--color-smoke); }
+  .input:focus-visible { outline: none; border-color: var(--color-soft-indigo); box-shadow: 0 0 0 1px var(--color-soft-indigo); }
+
+  .label-mono {
+    font-family: var(--font-mono); font-size: 12px; line-height: 1.4;
+    letter-spacing: 0.85px; text-transform: uppercase; color: var(--color-ash);
+  }
+  .tag {
+    display: inline-flex; align-items: center; gap: 4px; border-radius: 4px;
+    border: 1px solid var(--color-slate-edge); padding: 1px 6px;
+    font-family: var(--font-mono); font-size: 12px; line-height: 1.4; color: var(--color-ash);
+  }
+  .pill {
+    display: flex; align-items: center; gap: 8px; border-radius: 9999px;
+    padding: 8px 14px; font-size: 14px; font-weight: 500; color: var(--color-ash);
+    transition: background-color .18s, color .18s;
+  }
+  .pill:hover { background: var(--color-iron); color: var(--color-bone); }
+  .pill.router-link-active, .pill[aria-current="page"] { background: var(--color-iron); color: var(--color-bone); }
+}
+
+/* Markdown di jawaban */
+.md { font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.md > * + * { margin-top: 0.85em; }
+.md p { max-width: 70ch; }
+.md ul, .md ol { padding-left: 1.4em; max-width: 70ch; }
+.md ul { list-style: disc; } .md ol { list-style: decimal; }
+.md li + li { margin-top: .3em; }
+.md li::marker { color: var(--color-mist); }
+.md a { color: var(--color-bone); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-smoke); }
+.md a:hover { color: var(--color-soft-indigo); text-decoration-color: var(--color-soft-indigo); }
+.md strong { font-weight: 600; }
+.md h1, .md h2, .md h3 { font-weight: 500; letter-spacing: -0.4px; line-height: 1.3; margin-top: 1.4em; text-wrap: balance; }
+.md h1 { font-size: 22px; } .md h2 { font-size: 19px; } .md h3 { font-size: 16px; }
+.md code { font-family: var(--font-mono); font-size: 13px; background: var(--color-iron); border: 1px solid var(--color-slate-edge); padding: 1px 5px; border-radius: 4px; letter-spacing: 0; }
+.md pre { background: var(--color-graphite); border: 1px solid var(--color-iron); border-radius: 8px; padding: 12px 16px; overflow-x: auto; }
+.md pre code { background: none; border: 0; padding: 0; }
+.md blockquote { border-left: 1px solid var(--color-smoke); padding-left: 16px; color: var(--color-ash); }
+.md table { width: 100%; border-collapse: collapse; font-size: 14px; display: block; overflow-x: auto; }
+.md th, .md td { border: 1px solid var(--color-iron); padding: 6px 10px; text-align: left; }
+.md th { background: var(--color-graphite); font-weight: 500; }
+.md hr { border: 0; border-top: 1px solid var(--color-iron); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .5s var(--ease-out-expo) both; }
+@keyframes blink { 50% { opacity: 0; } }
+.caret::after {
+  content: ""; display: inline-block; width: 7px; height: 1.05em; margin-left: 3px;
+  background: var(--color-soft-indigo); vertical-align: text-bottom; animation: blink 1s steps(1) infinite;
+}
+@keyframes pulse-dot { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+.pulse-dot { animation: pulse-dot 1.2s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin .9s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
